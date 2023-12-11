@@ -1,0 +1,15 @@
+This weekend I retrieved an old old old graphic tablet, like 20 years old
+still pluged the USB (1.0)
+Ubuntu Mate recognized it .. almost correctly .. the  pen acting weirdly...
+
+but ... Mostly some X server configuration to fix,
+
+However after fixing the X server  configuration,
+there is still no tablet settings to tune it,
+and no other model seems to match enough to be tweaked
+and have a  working tablet setting interface in the Mate GUI
+
+As it not much missing to make it usable  I am starting it
+I will add additional settings anf features as  they will be needed
+.
+
