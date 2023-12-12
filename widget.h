@@ -23,22 +23,22 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
 
-    enum class {
+    enum class AttributeType {
         KernelType,
         XServerType
-    } AttributeType;
+    } ;
 
-    typedef enum {
+    enum class SizeUnitType {
         CoordinateTabletSize = 0,
         InchTabletSize = 1,
         MillimeterTabletSize = 2
-    } SizeUnitType;
+    } ;
 
-    typedef struct {
+    struct TabletSize {
         AttributeType   _type;
         SizeUnitType    _units;
         QPair<int, int> _size;
-    } TabletSize;
+    } ;
 
     void setKernelSizeUnitTypes (const SizeUnitType &t) { _kernelSizeUnitsType = t; }
     const SizeUnitType& kernelSizeUnitType() const { return _kernelSizeUnitsType; }
@@ -79,7 +79,7 @@ protected:
     void refreshXServerInfo();
     void refreshKernelInfo();
     void dispatchKernelDisplayFieldCallbacks();
-    void dispatchKernelDisplayField(const KernelInfo::Attribute&);
+    void dispatchKernelDisplayField(const AttributeType&);
 
     void programDisplayFieldCallbacks();
     void programComboVectors();
@@ -87,7 +87,7 @@ protected:
     void dispatchSharedDisplayFieldCallbacks();
     void dispatchXServerDisplayFieldCallbacks();
     void dispatchSharedDisplayField(const AttributeType&);
-    void dispatchXServerDisplayField(const XServerInfo::Attribute&);
+   // void dispatchXServerDisplayField(const XServerInfo::Attribute&);
 
     void dispatchXServerActiveAreaDisplayFields();
     void dispatchXServerSetXTopXBottomFieldsActive(bool);
