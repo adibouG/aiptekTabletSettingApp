@@ -22,23 +22,23 @@
         <enum>QTabWidget::North</enum>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
-       <widget class="QWidget" name="Infos">
+       <widget class="QWidget" name="InfosTab">
         <attribute name="title">
          <string>Infos</string>
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <layout class="QVBoxLayout" name="verticalLayout_3">
+          <layout class="QVBoxLayout" name="InfosTab_verticalLayout">
            <item>
-            <widget class="QGroupBox" name="groupBox">
+            <widget class="QGroupBox" name="SettingInfoBox">
              <property name="title">
               <string>Setting Info</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_2">
               <item row="1" column="0">
-               <layout class="QFormLayout" name="formLayout">
+               <layout class="QFormLayout" name="SettingInfoGroup">
                 <item row="0" column="0">
                  <widget class="QLabel" name="tabletLabel">
                   <property name="text">
@@ -47,7 +47,7 @@
                  </widget>
                 </item>
                 <item row="0" column="1">
-                 <widget class="QLabel" name="label_2">
+                 <widget class="QLabel" name="tabletValue">
                   <property name="text">
                    <string>TextLabel</string>
                   </property>
@@ -64,7 +64,7 @@
                  </widget>
                 </item>
                 <item row="1" column="1">
-                 <widget class="QLabel" name="label">
+                 <widget class="QLabel" name="inputPathValue">
                   <property name="maximumSize">
                    <size>
                     <width>16777215</width>
@@ -80,14 +80,14 @@
                  </widget>
                 </item>
                 <item row="2" column="0">
-                 <widget class="QLabel" name="label_4">
+                 <widget class="QLabel" name="sizeLabel">
                   <property name="text">
                    <string>Size</string>
                   </property>
                  </widget>
                 </item>
                 <item row="2" column="1">
-                 <widget class="QLabel" name="label_3">
+                 <widget class="QLabel" name="sizeValue">
                   <property name="maximumSize">
                    <size>
                     <width>16777215</width>
@@ -103,14 +103,14 @@
                  </widget>
                 </item>
                 <item row="3" column="0">
-                 <widget class="QLabel" name="label_6">
+                 <widget class="QLabel" name="productLabel">
                   <property name="text">
                    <string>Product</string>
                   </property>
                  </widget>
                 </item>
                 <item row="3" column="1">
-                 <widget class="QLabel" name="label_5">
+                 <widget class="QLabel" name="productValue">
                   <property name="maximumSize">
                    <size>
                     <width>16777215</width>
@@ -128,7 +128,10 @@
                </layout>
               </item>
               <item row="2" column="0">
-               <widget class="QGroupBox" name="horizontalGroupBox">
+               <widget class="QGroupBox" name="DeviceSelectionGroup">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="title">
                  <string>Device</string>
                 </property>
@@ -140,30 +143,43 @@
                   <set>Qt::AlignCenter</set>
                  </property>
                  <item row="0" column="1">
-                  <widget class="QComboBox" name="comboBox"/>
+                  <widget class="QComboBox" name="deviceSelector_comboBox">
+                   <property name="focusPolicy">
+                    <enum>Qt::StrongFocus</enum>
+                   </property>
+                   <property name="editable">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
                  </item>
                  <item row="1" column="0" colspan="2">
-                  <widget class="QPushButton" name="pushButton">
+                  <widget class="QPushButton" name="deviceSelectorRefresh_button">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
                    <property name="text">
                     <string>Refresh Data</string>
                    </property>
                   </widget>
                  </item>
                  <item row="0" column="0">
-                  <widget class="QLabel" name="label_10">
+                  <widget class="QLabel" name="deviceSelector_label">
                    <property name="text">
                     <string>Selected</string>
                    </property>
                   </widget>
                  </item>
                 </layout>
+                <zorder>deviceSelector_label</zorder>
+                <zorder>deviceSelector_comboBox</zorder>
+                <zorder>deviceSelectorRefresh_button</zorder>
                </widget>
               </item>
              </layout>
             </widget>
            </item>
            <item>
-            <widget class="QDialogButtonBox" name="buttonBox">
+            <widget class="QDialogButtonBox" name="DialogValidateButtons">
              <property name="standardButtons">
               <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
              </property>
@@ -173,7 +189,7 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="tab_2">
+       <widget class="QWidget" name="SettingsTab">
         <attribute name="title">
          <string>Settings</string>
         </attribute>
@@ -195,6 +211,9 @@
              <widget class="QRadioButton" name="radioButton">
               <property name="text">
                <string>Absolute Coordinates</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -288,7 +307,7 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="tab">
+       <widget class="QWidget" name="AdditionalSettingTab">
         <attribute name="title">
          <string>Additional Settings</string>
         </attribute>
@@ -345,7 +364,7 @@
              </spacer>
             </item>
             <item row="5" column="1">
-             <widget class="QLabel" name="label_9">
+             <widget class="QLabel" name="xyAxes_label">
               <property name="text">
                <string>y / x</string>
               </property>

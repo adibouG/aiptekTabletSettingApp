@@ -2,6 +2,7 @@
 #define TABLETDRIVERSETTING_H
 #include <QPair>
 #include <QList>
+#include <QMap>
 
 
 #include  <stddef.h>
@@ -10,12 +11,14 @@
 
 #define DEFAULT_DRIVER_ROOT_PATH "/sys/bus/usb/drivers/aiptek"
 
+
+
 class TabletDriverSetting
 {
 public:
-    TabletDriverSetting();
-    TabletDriverSetting(const TabletDriverSetting&);
-    ~TabletDriverSetting();
+    TabletDriverSetting ();
+    //TabletDriverSetting(const TabletDriverSetting&);
+    ~TabletDriverSetting(){}
 
     enum class PointerInputType {
         All=0,
@@ -65,15 +68,21 @@ public:
     } ;
 
     // Link Attribute - Access File Descriptor
-    typedef QPair<AttributeType, QString> AttributeFile;
+    typedef QPair<AttributeType,  std::string> AttributeFile;
+    typedef QPair<AttributeType, QString> AttributeValue;
+
+
+
+    void makeAttributeFileList();
 
     bool driverSettings(); //read the device kernel values
     bool setDriverSettings(); // set the device  kernel value
 
+    int selectedPathIdx() const { return _selectedPathIdx; }
+    void setSelectedPathIdx(const int i) { _selectedPathIdx = i; }
 
-    bool readKernelAttributeFile(const AttributeFile &a);
+    AttributeValue readKernelAttributeFile(const AttributeFile &a);
     bool programKernelAttributeFile(const AttributeFile &a);
-
 
     void toStream(std::ostream&) const;
     void toStream(std::ostream&, const AttributeType&) const;
@@ -83,6 +92,9 @@ public:
     void fromString(const std::string&, const AttributeType&);
 
     const QList<QString> usbDevicePaths() const  { return _usbDevicePaths; }
+    void getUsbDevicePaths();
+
+    const QMap<AttributeType, QString> paramValues() { return _paramValues; }
 
 private:
 
@@ -103,7 +115,14 @@ private:
         int     amount_;
     };
 
+    int                _selectedPathIdx = -1;
     QList<QString>   _usbDevicePaths;
+    QMap<AttributeType, std::string> readableParams;
+    QMap<AttributeType, std::string> writableParams;
+    QMap<AttributeType, std::string> writableWheelOnlyParams;
+    QMap<AttributeType, QString>   _paramValues;
+
+
 };
 
 #endif // TABLETDRIVERSETTING_H
